@@ -12,8 +12,10 @@ const App = () => {
   const dispatch = useDispatch();
 
   const lobbyListWithGameGroups = useSelector(state => state.lobbyListWithGameGroups) || [];
-  const lobbyNames = lobbyListWithGameGroups.map(el => el.name);
+  const lobbyGameGroupGames = useSelector(state => state.lobbyGameGroupGames) || [];
 
+  const lobbyNames = lobbyListWithGameGroups.map(el => el.name);
+  
   const [lobby, setLobby] = useState(0);
 
   useEffect(() => {
@@ -23,8 +25,15 @@ const App = () => {
 
   return (
     <div className="App">
-      <Sidebar lobbyNames={lobbyNames} setLobby={setLobby} lobby={lobby}/>
-      <Lobby lobbyType={lobbyNames[lobby]}/>
+      <Sidebar
+        lobbyNames={lobbyNames}
+        setLobby={setLobby}
+        lobby={lobby}/>
+
+      <Lobby
+        lobbyType={lobbyNames[lobby]}
+        lobbyListWithGameGroups={lobbyListWithGameGroups}
+        lobbyGameGroupGames={lobbyGameGroupGames}/>
     </div>
   );
 }
