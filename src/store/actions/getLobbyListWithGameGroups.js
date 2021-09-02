@@ -9,6 +9,7 @@ const getLobbyListWithGameGroups = () => {
         type: 'GET_LOBBY_LIST_WITH_GAME_GROUPS',
         payload: data,
       };
+      //console.log(data);
       dispatch(action);
     } catch(error) {
       const action = {
