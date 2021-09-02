@@ -14,14 +14,17 @@
     background: $color1;
     height: 100%;
     pointer-events: all;
-    padding: .2rem 0;
   }
 
   ul {
     li {
       cursor: pointer;
-      padding: .2rem .5rem;
-      margin: .5rem 0;
+      padding: .5rem;
+      text-transform: capitalize;
+
+      &.active {
+        background: $color2;
+      }
     }
   }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Lobby from './components/Lobby';
@@ -13,7 +13,8 @@ const App = () => {
 
   const lobbyListWithGameGroups = useSelector(state => state.lobbyListWithGameGroups) || [];
   const lobbyNames = lobbyListWithGameGroups.map(el => el.name);
-  console.log(lobbyNames)
+
+  const [lobby, setLobby] = useState(0);
 
   useEffect(() => {
     dispatch(getLobbyGameGroupGames());
@@ -22,8 +23,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <Sidebar lobbyNames={lobbyNames}/>
-      <Lobby lobbyType={"casino"}/>
+      <Sidebar lobbyNames={lobbyNames} setLobby={setLobby} lobby={lobby}/>
+      <Lobby lobbyType={lobbyNames[lobby]}/>
     </div>
   );
 }
