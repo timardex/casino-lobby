@@ -13,6 +13,7 @@ const App = () => {
 
   const lobbyListWithGameGroups = useSelector(state => state.lobbyListWithGameGroups) || [];
   const lobbyGameGroupGames = useSelector(state => state.lobbyGameGroupGames) || [];
+  const error = useSelector(state => state.error);
 
   const lobbyNames = lobbyListWithGameGroups.map(el => el.name);
   
@@ -23,17 +24,28 @@ const App = () => {
     dispatch(getLobbyListWithGameGroups());
   }, [dispatch]);
 
+  const renderComponents = () => {
+    if(typeof error !== undefined) {
+      return (
+        <div>
+          <Sidebar
+            lobbyNames={lobbyNames}
+            setLobby={setLobby}
+            lobby={lobby}/>
+
+          <Lobby
+            lobbyType={lobbyNames[lobby]}
+            lobbyListWithGameGroups={lobbyListWithGameGroups}
+            lobbyGameGroupGames={lobbyGameGroupGames}/>
+        </div>
+      )
+    }
+    return 'Something went wrong';
+  }
+
   return (
     <div className="App">
-      <Sidebar
-        lobbyNames={lobbyNames}
-        setLobby={setLobby}
-        lobby={lobby}/>
-
-      <Lobby
-        lobbyType={lobbyNames[lobby]}
-        lobbyListWithGameGroups={lobbyListWithGameGroups}
-        lobbyGameGroupGames={lobbyGameGroupGames}/>
+      {renderComponents()}
     </div>
   );
 }

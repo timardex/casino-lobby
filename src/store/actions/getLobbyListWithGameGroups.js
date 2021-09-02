@@ -8,6 +8,7 @@ const getLobbyListWithGameGroups = () => {
       const action = {
         type: 'GET_LOBBY_LIST_WITH_GAME_GROUPS',
         payload: data,
+        error: undefined,
       };
       //console.log(data);
       dispatch(action);
@@ -15,6 +16,7 @@ const getLobbyListWithGameGroups = () => {
       const action = {
         type: 'GET_LOBBY_LIST_WITH_GAME_GROUPS',
         payload: error,
+        error,
       }
       dispatch(action);
     }

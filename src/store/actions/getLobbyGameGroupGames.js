@@ -8,12 +8,14 @@ const getLobbyGameGroupGames = () => {
       const action = {
         type: 'GET_LOBBY_GAME_GROUP_GAMES',
         payload: data,
+        error: undefined,
       };
       dispatch(action);
     } catch(error) {
       const action = {
         type: 'GET_LOBBY_GAME_GROUP_GAMES',
-        payload: error,
+        payload: [],
+        error,
       }
       dispatch(action);
     }
