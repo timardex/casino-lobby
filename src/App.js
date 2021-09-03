@@ -15,6 +15,7 @@ const App = () => {
   const lobbyNames = useSelector(state => state.lobbyNames) || [];
   const lobbyGameGroupGames = useSelector(state => state.lobbyGameGroupGames) || [];
   const error = useSelector(state => state.error);
+  
   const [lobby, setLobby] = useState(0);
 
   useEffect(() => {

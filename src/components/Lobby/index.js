@@ -5,14 +5,15 @@ const Lobby = (props) => {
   const { lobbyType, lobbyListWithGameGroups, lobbyGameGroupGames } = props;
 
   const renderLobby = () => {
-    if(lobbyListWithGameGroups.length > 0) {
+    const checkGroups = lobbyListWithGameGroups.length > 0 && lobbyGameGroupGames.length > 0;
+    if(checkGroups) {
       const { gameGroupList } = lobbyListWithGameGroups.find(el => el.name === lobbyType);
       
       const lobby = gameGroupList.map(list => {
         const { name, id, game_group_order } = list;
-        const games = lobbyGameGroupGames.filter(game => game.gameGroupList.some(item => item.id === id));
+        const games = lobbyGameGroupGames.filter(game => game.gameGroupList.some(group => group.id === id));
         return { name, id, game_group_order, games };
-      });
+      }).sort((a, b) => b.game_group_order - a.game_group_order);
       
       return lobby;
     }
@@ -24,7 +25,7 @@ const Lobby = (props) => {
       <h1>{ lobbyType }</h1>
       <ul className="lobby-list">
 
-        {renderLobby().sort((a, b) => b.game_group_order - a.game_group_order).map(item => {
+        {renderLobby().map(item => {
           return <li key={item.id} className="lobby-item">
             <span className="lobby-title">{item.name}</span>
 
