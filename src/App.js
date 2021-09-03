@@ -12,11 +12,9 @@ const App = () => {
   const dispatch = useDispatch();
 
   const lobbyListWithGameGroups = useSelector(state => state.lobbyListWithGameGroups) || [];
+  const lobbyNames = useSelector(state => state.lobbyNames) || [];
   const lobbyGameGroupGames = useSelector(state => state.lobbyGameGroupGames) || [];
   const error = useSelector(state => state.error);
-
-  const lobbyNames = lobbyListWithGameGroups.map(el => el.name);
-  
   const [lobby, setLobby] = useState(0);
 
   useEffect(() => {
@@ -25,7 +23,7 @@ const App = () => {
   }, [dispatch]);
 
   const renderComponents = () => {
-    if(typeof error !== undefined) {
+    if(error === undefined) {
       return (
         <div>
           <Sidebar
@@ -40,7 +38,7 @@ const App = () => {
         </div>
       )
     }
-    return 'Something went wrong';
+    return error;
   }
 
   return (

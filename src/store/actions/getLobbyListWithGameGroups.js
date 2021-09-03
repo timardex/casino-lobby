@@ -8,14 +8,13 @@ const getLobbyListWithGameGroups = () => {
       const action = {
         type: 'GET_LOBBY_LIST_WITH_GAME_GROUPS',
         payload: data,
-        error: undefined,
+        error: Object.keys(data).includes('is_IpBlocked') ? data.Desc : undefined,
       };
-      //console.log(data);
       dispatch(action);
     } catch(error) {
       const action = {
         type: 'GET_LOBBY_LIST_WITH_GAME_GROUPS',
-        payload: error,
+        payload: [],
         error,
       }
       dispatch(action);
