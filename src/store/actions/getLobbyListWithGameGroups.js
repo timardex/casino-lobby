@@ -1,5 +1,6 @@
 import Service from "../service";
 import api from "../service/api";
+import { errorHandler } from '../helpers';
 
 const getLobbyListWithGameGroups = () => {
   return async function(dispatch) {
@@ -8,7 +9,7 @@ const getLobbyListWithGameGroups = () => {
       const action = {
         type: 'GET_LOBBY_LIST_WITH_GAME_GROUPS',
         payload: data,
-        error: Object.keys(data).includes('is_IpBlocked') ? data.Desc : undefined,
+        error: errorHandler(data, 'block_type') ? data : undefined,
       };
       dispatch(action);
     } catch(error) {

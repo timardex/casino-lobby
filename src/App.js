@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Lobby from './components/Lobby';
 import Sidebar from './components/Sidebar';
+import Error from './components/Error';
 
 import './App.scss';
 
@@ -39,7 +40,7 @@ const App = () => {
         </div>
       )
     }
-    return error;
+    return <Error error={error}/>
   }
 
   return (
