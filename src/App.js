@@ -20,8 +20,9 @@ const App = () => {
   const [lobby, setLobby] = useState(0);
 
   useEffect(() => {
-    dispatch(getLobbyGameGroupGames());
-    dispatch(getLobbyListWithGameGroups());
+    dispatch(getLobbyListWithGameGroups()).then(() => {
+      dispatch(getLobbyGameGroupGames());
+    });
   }, [dispatch]);
 
   const renderComponents = () => {
