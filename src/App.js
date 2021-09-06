@@ -13,8 +13,8 @@ const App = () => {
   const dispatch = useDispatch();
 
   const lobbyListWithGameGroups = useSelector(state => state.lobbyListWithGameGroups) || [];
-  const lobbyNames = useSelector(state => state.lobbyNames) || [];
   const lobbyGameGroupGames = useSelector(state => state.lobbyGameGroupGames) || [];
+  const lobbyNames = useSelector(state => state.lobbyNames) || [];
   const error = useSelector(state => state.error);
   
   const [lobby, setLobby] = useState(0);
